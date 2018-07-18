@@ -1,8 +1,12 @@
 import React, { PureComponent } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { Question, Result } from './';
+import {
+  Question,
+  Result,
+  styles
+} from './';
 
-export default class Game extends PureComponent { 
+class Game extends PureComponent { 
   constructor() {
     super();
     this.state = {
@@ -39,9 +43,16 @@ export default class Game extends PureComponent {
         )
   }
 
+  restart = () => {
+    this.setState({
+      hits: [],
+      mistakes: [],
+      currentQuestion: 0,
+    })
+  }
+
   renderChooser = () => {
-    const { styles } = this.props;
-    const { questions, currentQuestion } = this.state;
+    const { questions, currentQuestion, hits, mistakes } = this.state;
 
     if (!questions.length) {
       return (
@@ -50,21 +61,13 @@ export default class Game extends PureComponent {
         </View>
       )
     } else if ( questions.length > currentQuestion ) {
-      return (
-        <Question
-            answer={this.handleAnswer}
-            item={questions[currentQuestion]}
-            styles={styles}
-        />
-      )
+      return <Question currentQuestion={currentQuestion} answer={this.handleAnswer} item={questions[currentQuestion]} />
     } else {
-      return (
-        <Result
-          styles={styles}
-        />
-      )
+      return <Result hits={hits} mistakes={mistakes} restart={this.restart}/>
     }
   }
 
   render() { return this.renderChooser() }
 }
+
+export default Game;

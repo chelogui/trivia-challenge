@@ -1,17 +1,16 @@
-import React from 'react';
-import { Intro, styles, Game } from './src';
+import React, { Component } from 'react';
+import { Intro, Game } from './src';
 
-export default class App extends React.Component {
-
+class App extends Component {
   state = { playing: false }
 
-  startGame = () => this.setState({playing: true})
-
-  renderChooser = ( {playing, questionsData} ) => (
-    playing 
-      ? <Game styles={styles} />
-      : <Intro styles={styles} startGame={this.startGame} />
-  )
-
-  render() { return this.renderChooser(this.state) }
+  render() {
+    return (
+      this.state.playing
+        ? <Game />
+        : <Intro startGame={ () => this.setState({ playing: true }) } /> 
+    )
+  }
 }
+
+export default App;

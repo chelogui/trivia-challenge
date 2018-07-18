@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { styles } from './'
 
-export default ({ styles, startGame }) => (
+export default ({ startGame }) => (
   <View style={styles.container}>
     <View style={styles.header}>
         <Text style={styles.headerTitle}>Welcome to the {"\n"} Trivia Challenge!</Text>

@@ -7,6 +7,14 @@ export default StyleSheet.create({
     paddingTop: 23,
     justifyContent: 'center',
   },
+  containerResult: {
+    backgroundColor: "#dcdbdc",
+    paddingTop: 23,
+    justifyContent: 'center',
+  },
+  status: {
+    marginTop: 20,
+  },
   header: {
     alignItems: 'center',
     flex: 1,
@@ -23,11 +31,29 @@ export default StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
   },
+  questionListItem: {
+    marginBottom: 10,
+    flexDirection: 'row'
+  },
+  contentResult: {
+    padding: 20,
+  },
+  questionStatus: {
+    flex: 1,
+    fontSize: 24,
+  },
+  questionResult: {
+    flex: 9,
+  },
   contentAnswers: {
     alignItems: 'center',
     flex: 4,
     justifyContent: 'center',
     flexDirection: 'row',
+  },
+  question: {
+    borderWidth: 1,
+    padding: 20,
   },
   option: {
     paddingRight: 40,
@@ -36,6 +62,7 @@ export default StyleSheet.create({
   footer: {
     alignItems: 'center',
     flex: 1,
+    paddingBottom: 30,
     justifyContent: 'center',
   },
   centeredText: {

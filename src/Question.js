@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { styles, replaceStr } from './'
 
 export default (props) => {
-  const { styles, item, answer } = props;
+  const { item, answer, currentQuestion } = props;
 
   const answering = (option) => {
     (item.correct_answer === option) ? answer('correct', item) : answer('wrong', item)
@@ -15,7 +16,8 @@ export default (props) => {
       </View>
 
       <View style={styles.content}>
-        <Text style={styles.centeredText}>{item.question}</Text>
+        <Text style={[styles.centeredText, styles.question]}>{replaceStr(item.question)}</Text>
+        <Text style={styles.status}> {currentQuestion} of 10 </Text>
       </View>
 
       <View style={[styles.contentAnswers]}>
@@ -23,9 +25,6 @@ export default (props) => {
         <Text onPress={() => answering('False')} style={styles.option}>No</Text>
       </View>
 
-      <View style={styles.footer}>
-        <Text>Não sei ainda...</Text>
-      </View>
     </View>
   )
 }

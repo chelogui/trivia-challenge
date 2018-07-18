@@ -1,19 +1,40 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView
+} from 'react-native';
+import { styles, replaceStr } from './';
 
-export default ({ styles }) => (
-  <View style={styles.container}>
-    <View style={styles.header}>
-        <Text style={styles.headerTitle}>Final!!!</Text>
-    </View>
+export default ({ hits, mistakes, restart }) => {
+    const resultQuestions = [ ...hits, ...mistakes ];
 
-    <View style={styles.content}>
-        <Text style={styles.centeredText}>Resultado</Text>
-        <Text>Voce acertou muitas!</Text>
-    </View>
+    const generateKey = (pre) => {
+      return `${ pre }_${ new Date().getTime() }`;
+    }
 
-    <View style={styles.footer}>
-        <Text onPress={(e) => console.log(e)}>Restart</Text>
-    </View>
-  </View>
-)
+    return (
+      <ScrollView styles={styles.container}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>You scored { hits.length } / 10 </Text>
+          </View>
+
+          <View style={styles.contentResult}>
+            {resultQuestions.map( (item, index) => {
+              return (
+                <View style={styles.questionListItem} key={generateKey(index)}>
+                  <Text style={styles.questionStatus}> + </Text>
+                  <Text style={styles.questionResult}>{replaceStr(item.question)}</Text>
+                </View>
+              )
+            })}
+          </View>
+
+          <View style={styles.footer}>
+            <Text onPress={restart}>PLAY AGAIN?</Text>
+          </View>
+        </View>
+      </ScrollView>
+    )
+}
