@@ -10,6 +10,7 @@ export default StyleSheet.create({
     // ...border,
     flex: 1,
     paddingTop: 23,
+    justifyContent: 'center',
   },
   header: {
     // ...border,
@@ -18,6 +19,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   headerTitle: {
+    textAlign: 'center',
     fontWeight: 'bold'
   },
   content: {

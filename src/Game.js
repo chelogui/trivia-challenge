@@ -1,32 +1,44 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
+import Question from './Question';
 
 class Game extends Component { 
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      questions: [],
+      user: {
+        anwsers: [],
+        current: 0,
+      }
+    }
   }
 
-  render() {
+  getQuestions = () => {
+    fetch('https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean')
+      .then((data) => data.json())
+      .then((data) => { this.setState({ questions: data.results }) })
+  }
+
+  componentDidMount = () => {
+    this.getQuestions()
+  }
+
+  renderChooser = () => {
+    let content;
     const { styles } = this.props;
+    const { questions } = this.state;
 
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-            <Text style={styles.headerTitle}>Welcome to the Trivia Challenge!</Text>
-        </View>
+    if (!this.state.questions.length) {
+      content = <View style={[ styles.container, {justifyContent: 'center'} ]}><ActivityIndicator size="large" color="#0000ff" /></View>
+    } else {
+      content = <Question item={questions[0]} styles={styles} />
+    }
 
-        <View style={styles.content}>
-            <Text style={styles.centeredText}>You will be presented with 10 True or False questions.</Text>
-            <Text>Can you score 100%?</Text>
-        </View>
-
-        <View style={styles.footer}>
-            <Text onPress={(e) => console.log(e)}>BEGIN</Text>
-        </View>
-      </View>
-    )
+    return content;
   }
+
+  render() { return this.renderChooser() }
 }
 
 export default Game;
