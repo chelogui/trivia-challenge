@@ -22,7 +22,8 @@ export default StyleSheet.create({
   },
   headerTitle: {
     textAlign: 'center',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 24,
   },
   content: {
     alignItems: 'center',
@@ -53,7 +54,10 @@ export default StyleSheet.create({
   },
   question: {
     borderWidth: 1,
-    padding: 20,
+    paddingTop: 40,
+    paddingBottom: 40,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   option: {
     paddingRight: 40,
@@ -67,6 +71,7 @@ export default StyleSheet.create({
   },
   centeredText: {
     textAlign: 'center',
+    fontSize: 18,
   },
   containerButton: {
     borderWidth: 1,
@@ -77,4 +82,7 @@ export default StyleSheet.create({
     color: 'red',
     fontSize: 30
   },
+  begin: {
+
+  }
 });

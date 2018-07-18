@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { styles } from './'
 
 export default ({ startGame }) => (
@@ -14,7 +14,7 @@ export default ({ startGame }) => (
     </View>
 
     <View style={styles.footer}>
-        <Text onPress={startGame}>BEGIN</Text>
+        <Button onPress={startGame} title="BEGIN" />
     </View>
   </View>
 )

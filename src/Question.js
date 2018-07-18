@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { styles, replaceStr } from './'
 
 export default (props) => {
@@ -17,12 +17,17 @@ export default (props) => {
 
       <View style={styles.content}>
         <Text style={[styles.centeredText, styles.question]}>{replaceStr(item.question)}</Text>
-        <Text style={styles.status}> {currentQuestion} of 10 </Text>
+        <Text style={styles.status}> {currentQuestion + 1} of 10 </Text>
       </View>
 
       <View style={[styles.contentAnswers]}>
-        <Text onPress={() => answering('True')} style={styles.option}>Yes</Text>
-        <Text onPress={() => answering('False')} style={styles.option}>No</Text>
+        <View style={styles.option}>
+          <Button color="green" onPress={() => answering('True')} title="Yes" />
+        </View>
+
+        <View style={styles.option}>
+          <Button color="red" onPress={() => answering('False')} title="No" />
+        </View>
       </View>
 
     </View>

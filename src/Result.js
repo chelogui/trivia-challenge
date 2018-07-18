@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View,
   Text,
+  Button,
   ScrollView
 } from 'react-native';
 import { styles, replaceStr } from './';
@@ -32,7 +33,7 @@ export default ({ answers, restart }) => {
           </View>
 
           <View style={styles.footer}>
-            <Text onPress={restart}>PLAY AGAIN?</Text>
+            <Button onPress={restart} title="PLAY AGAIN?" />
           </View>
         </View>
       </ScrollView>
