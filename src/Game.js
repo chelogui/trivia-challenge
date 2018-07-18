@@ -11,8 +11,7 @@ class Game extends PureComponent {
     super();
     this.state = {
       questions: [],
-      hits: [],
-      mistakes: [],
+      answers: [],
       currentQuestion: 0,
     }
   }
@@ -28,31 +27,21 @@ class Game extends PureComponent {
   nextQuestion = () => this.setState()
 
   handleAnswer = (option, item) => {
-    ( option )
-      ? this.setState(
-        (prevState) => ({
-            hits: [ ...prevState.hits, { order: prevState.currentQuestion, item } ],
-            currentQuestion: prevState.currentQuestion + 1
-          })
-        )
-      : this.setState(
-          (prevState) => ({
-            mistakes: [ ...prevState.mistakes, { order: prevState.currentQuestion, item } ],
-            currentQuestion: prevState.currentQuestion + 1
-          })
-        )
+    this.setState((prevState) => ({
+      answers: [ ...prevState.answers, { correct: option, item } ],
+      currentQuestion: prevState.currentQuestion + 1
+    }))
   }
 
   restart = () => {
     this.setState({
-      hits: [],
-      mistakes: [],
+      answers: [],
       currentQuestion: 0,
     })
   }
 
   renderChooser = () => {
-    const { questions, currentQuestion, hits, mistakes } = this.state;
+    const { questions, currentQuestion, answers } = this.state;
 
     if (!questions.length) {
       return (
@@ -63,7 +52,7 @@ class Game extends PureComponent {
     } else if ( questions.length > currentQuestion ) {
       return <Question currentQuestion={currentQuestion} answer={this.handleAnswer} item={questions[currentQuestion]} />
     } else {
-      return <Result hits={hits} mistakes={mistakes} restart={this.restart}/>
+      return <Result answers={answers} restart={this.restart}/>
     }
   }
 

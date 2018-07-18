@@ -6,8 +6,8 @@ import {
 } from 'react-native';
 import { styles, replaceStr } from './';
 
-export default ({ hits, mistakes, restart }) => {
-    const resultQuestions = [ ...hits, ...mistakes ].sort( (a, b) => a.order - b.order );
+export default ({ answers, restart }) => {
+    const hits = answers.filter(item => item.correct );
 
     const generateKey = (pre) => {
       return `${ pre }_${ new Date().getTime() }`;
@@ -21,11 +21,11 @@ export default ({ hits, mistakes, restart }) => {
           </View>
 
           <View style={styles.contentResult}>
-            {resultQuestions.map( ({ item }, index) => {
+            {answers.map( (item, index) => {
               return (
                 <View style={styles.questionListItem} key={generateKey(index)}>
-                  <Text style={styles.questionStatus}> + </Text>
-                  <Text style={styles.questionResult}>{replaceStr(item.question)}</Text>
+                  <Text style={styles.questionStatus}> { item.correct ? '+' : '-' } </Text>
+                  <Text style={styles.questionResult}>{replaceStr(item.item.question)}</Text>
                 </View>
               )
             })}
