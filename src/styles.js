@@ -8,6 +8,7 @@ const border = {
 export default StyleSheet.create({
   container: {
     // ...border,
+    backgroundColor: "#dcdbdc",
     flex: 1,
     paddingTop: 23,
     justifyContent: 'center',

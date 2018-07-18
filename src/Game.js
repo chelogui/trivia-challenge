@@ -7,10 +7,8 @@ class Game extends Component {
     super();
     this.state = {
       questions: [],
-      user: {
-        anwsers: [],
-        current: 0,
-      }
+      hits: [],
+      mistakes: [],
     }
   }
 
@@ -24,11 +22,19 @@ class Game extends Component {
     this.getQuestions()
   }
 
-  handleAnswer = (option) => {
-    if (option) {
-      console.log('Você respondeu sim!')
+  handleAnswer = (option, item) => {
+    if ( option === 'correct' ) {
+      console.log('atualizar o sim')
+      this.setState(
+        (prevState) => ({ hits: [ ...prevState.hits, item ] }), 
+        () => console.log(this.state.hits.length)
+      )
     } else {
-      console.log('Você respondeu não!')
+      console.log('atualizar o nao')
+      this.setState(
+        (prevState) => ({ mistakes: [ ...prevState.mistakes, item ] }),
+        () => console.log(this.state.mistakes.length)
+      )
     }
   }
 
