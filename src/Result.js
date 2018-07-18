@@ -7,7 +7,7 @@ import {
 import { styles, replaceStr } from './';
 
 export default ({ hits, mistakes, restart }) => {
-    const resultQuestions = [ ...hits, ...mistakes ];
+    const resultQuestions = [ ...hits, ...mistakes ].sort( (a, b) => a.order - b.order );
 
     const generateKey = (pre) => {
       return `${ pre }_${ new Date().getTime() }`;
@@ -21,7 +21,7 @@ export default ({ hits, mistakes, restart }) => {
           </View>
 
           <View style={styles.contentResult}>
-            {resultQuestions.map( (item, index) => {
+            {resultQuestions.map( ({ item }, index) => {
               return (
                 <View style={styles.questionListItem} key={generateKey(index)}>
                   <Text style={styles.questionStatus}> + </Text>

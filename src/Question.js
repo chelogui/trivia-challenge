@@ -6,7 +6,7 @@ export default (props) => {
   const { item, answer, currentQuestion } = props;
 
   const answering = (option) => {
-    (item.correct_answer === option) ? answer('correct', item) : answer('wrong', item)
+    (item.correct_answer === option) ? answer(true, item) : answer(false, item)
   }
 
   return (

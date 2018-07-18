@@ -28,16 +28,16 @@ class Game extends PureComponent {
   nextQuestion = () => this.setState()
 
   handleAnswer = (option, item) => {
-    ( option === 'correct' )
+    ( option )
       ? this.setState(
         (prevState) => ({
-            hits: [ ...prevState.hits, item ],
+            hits: [ ...prevState.hits, { order: prevState.currentQuestion, item } ],
             currentQuestion: prevState.currentQuestion + 1
           })
         )
       : this.setState(
           (prevState) => ({
-            mistakes: [ ...prevState.mistakes, item ],
+            mistakes: [ ...prevState.mistakes, { order: prevState.currentQuestion, item } ],
             currentQuestion: prevState.currentQuestion + 1
           })
         )
