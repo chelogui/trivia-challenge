@@ -1,14 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import Question from './Question';
+import { Question, Result } from './';
 
-class Game extends Component { 
+export default class Game extends PureComponent { 
   constructor() {
     super();
     this.state = {
       questions: [],
       hits: [],
       mistakes: [],
+      currentQuestion: 0,
     }
   }
 
@@ -18,45 +19,52 @@ class Game extends Component {
       .then((data) => { this.setState({ questions: data.results }) })
   }
 
-  componentDidMount = () => {
-    this.getQuestions()
-  }
+  componentDidMount = () => this.getQuestions()
+
+  nextQuestion = () => this.setState()
 
   handleAnswer = (option, item) => {
-    if ( option === 'correct' ) {
-      console.log('atualizar o sim')
-      this.setState(
-        (prevState) => ({ hits: [ ...prevState.hits, item ] }), 
-        () => console.log(this.state.hits.length)
-      )
-    } else {
-      console.log('atualizar o nao')
-      this.setState(
-        (prevState) => ({ mistakes: [ ...prevState.mistakes, item ] }),
-        () => console.log(this.state.mistakes.length)
-      )
-    }
+    ( option === 'correct' )
+      ? this.setState(
+        (prevState) => ({
+            hits: [ ...prevState.hits, item ],
+            currentQuestion: prevState.currentQuestion + 1
+          })
+        )
+      : this.setState(
+          (prevState) => ({
+            mistakes: [ ...prevState.mistakes, item ],
+            currentQuestion: prevState.currentQuestion + 1
+          })
+        )
   }
 
   renderChooser = () => {
-    let content;
     const { styles } = this.props;
-    const { questions } = this.state;
+    const { questions, currentQuestion } = this.state;
 
-    if (!this.state.questions.length) {
-      content = <View style={[ styles.container, {justifyContent: 'center'} ]}><ActivityIndicator size="large" color="#0000ff" /></View>
+    if (!questions.length) {
+      return (
+        <View style={[ styles.container, {justifyContent: 'center'} ]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )
+    } else if ( questions.length > currentQuestion ) {
+      return (
+        <Question
+            answer={this.handleAnswer}
+            item={questions[currentQuestion]}
+            styles={styles}
+        />
+      )
     } else {
-      content = <Question
-                  answer={this.handleAnswer}
-                  item={questions[0]}
-                  styles={styles}
-                />
+      return (
+        <Result
+          styles={styles}
+        />
+      )
     }
-
-    return content;
   }
 
   render() { return this.renderChooser() }
 }
-
-export default Game;

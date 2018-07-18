@@ -1,20 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-const border = {
-  borderColor: 'red',
-  borderWidth: 1,
-};
-
 export default StyleSheet.create({
   container: {
-    // ...border,
     backgroundColor: "#dcdbdc",
     flex: 1,
     paddingTop: 23,
     justifyContent: 'center',
   },
   header: {
-    // ...border,
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
@@ -24,7 +17,6 @@ export default StyleSheet.create({
     fontWeight: 'bold'
   },
   content: {
-    // ...border,
     alignItems: 'center',
     flex: 4,
     justifyContent: 'center',
@@ -32,7 +24,6 @@ export default StyleSheet.create({
     paddingRight: 40,
   },
   contentAnswers: {
-    // ...border,
     alignItems: 'center',
     flex: 4,
     justifyContent: 'center',
@@ -43,7 +34,6 @@ export default StyleSheet.create({
     paddingLeft: 40,
   },
   footer: {
-    // ...border,
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',

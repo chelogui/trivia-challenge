@@ -1,22 +1,11 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text } from 'react-native';
 
 export default (props) => {
-  const {
-    styles,
-    item,
-    answer,
-  } = props;
-
-  console.log('================');
-  console.log(item);
-  console.log('================');
+  const { styles, item, answer } = props;
 
   const answering = (option) => {
-    console.log('Resposta: ', item.correct_answer);
-    (item.correct_answer === option)
-      ? answer('correct', item)
-      : answer('wrong', item)
+    (item.correct_answer === option) ? answer('correct', item) : answer('wrong', item)
   }
 
   return (
