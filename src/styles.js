@@ -30,6 +30,17 @@ export default StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
   },
+  contentAnswers: {
+    // ...border,
+    alignItems: 'center',
+    flex: 4,
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  option: {
+    paddingRight: 40,
+    paddingLeft: 40,
+  },
   footer: {
     // ...border,
     alignItems: 'center',

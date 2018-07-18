@@ -24,6 +24,14 @@ class Game extends Component {
     this.getQuestions()
   }
 
+  handleAnswer = (option) => {
+    if (option) {
+      console.log('Você respondeu sim!')
+    } else {
+      console.log('Você respondeu não!')
+    }
+  }
+
   renderChooser = () => {
     let content;
     const { styles } = this.props;
@@ -32,7 +40,11 @@ class Game extends Component {
     if (!this.state.questions.length) {
       content = <View style={[ styles.container, {justifyContent: 'center'} ]}><ActivityIndicator size="large" color="#0000ff" /></View>
     } else {
-      content = <Question item={questions[0]} styles={styles} />
+      content = <Question
+                  answer={this.handleAnswer}
+                  item={questions[0]}
+                  styles={styles}
+                />
     }
 
     return content;

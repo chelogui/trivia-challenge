@@ -9,10 +9,7 @@ export default ({ styles, startGame }) => (
 
     <View style={styles.content}>
         <Text style={styles.centeredText}>You will be presented {"\n"} with 10 True or False {"\n"} questions.</Text>
-    </View>
-
-    <View style={styles.content}>
-        <Text>Can you score 100%?</Text>
+        <Text style={[styles.centeredText, { marginTop: 50}]}>Can you score 100%?</Text>
     </View>
 
     <View style={styles.footer}>

@@ -3,9 +3,7 @@ import { Intro, styles, Game } from './src';
 
 export default class App extends React.Component {
 
-  state = {
-    playing: false,
-  }
+  state = { playing: false }
 
   startGame = () => this.setState({playing: true})
 
